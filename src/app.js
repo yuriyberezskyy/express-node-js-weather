@@ -11,6 +11,7 @@ app.set("views", viewPath);
 hbs.registerPartials(partialsPath);
 
 app.use(express.static(path.join(__dirname, "../public")));
+
 app.get("", (req, res) => {
   res.render("index", {
     title: "Weather App",
@@ -35,6 +36,10 @@ app.get("/help", (req, res) => {
 
 app.get("/weather", (req, res) => {
   res.send([{ forecast: "50F", location: "New York City" }]);
+});
+
+app.get("*", (req, res) => {
+  res.send("My 404 page");
 });
 
 app.listen(3000, () => {

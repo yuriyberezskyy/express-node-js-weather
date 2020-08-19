@@ -38,8 +38,20 @@ app.get("/weather", (req, res) => {
   res.send([{ forecast: "50F", location: "New York City" }]);
 });
 
+app.get("/help/*", (req, res) => {
+  res.render("404", {
+    title: "404",
+    name: "Yuriy",
+    errorMessage: "Help article not found",
+  });
+});
+
 app.get("*", (req, res) => {
-  res.send("My 404 page");
+  res.render("404", {
+    title: "404",
+    name: "Yuriy",
+    errorMessage: "Page not found",
+  });
 });
 
 app.listen(3000, () => {

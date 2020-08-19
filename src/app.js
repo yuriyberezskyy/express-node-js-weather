@@ -20,6 +20,7 @@ app.get("", (req, res) => {
 
 app.get("/about", (req, res) => {
   res.render("about", {
+    title: "About",
     name: "Yuriy",
   });
 });
@@ -27,6 +28,8 @@ app.get("/about", (req, res) => {
 app.get("/help", (req, res) => {
   res.render("help", {
     name: "Yuriy",
+    helpText: "This is some helpful text.",
+    title: "Help",
   });
 });
 

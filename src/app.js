@@ -1,11 +1,14 @@
 const path = require("path");
 const express = require("express");
+const hbs = require("hbs");
 
 const app = express();
-const viewPath = path.join(__dirname, "../templates");
+const viewPath = path.join(__dirname, "../templates/views");
+const partialsPath = path.join(__dirname, "../templates/partials");
 
 app.set("view engine", "hbs");
 app.set("views", viewPath);
+hbs.registerPartials(partialsPath);
 
 app.use(express.static(path.join(__dirname, "../public")));
 app.get("", (req, res) => {
@@ -14,18 +17,6 @@ app.get("", (req, res) => {
     name: "Yuriy",
   });
 });
-// app.get("/help", (req, res) => {
-//   res.send([
-//     {
-//       name: "Andrew",
-//       age: 27,
-//     },
-//   ]);
-// });
-
-// app.get("/about", (req, res) => {
-//   res.send("<h1>About page</h1>");
-// });
 
 app.get("/about", (req, res) => {
   res.render("about", {

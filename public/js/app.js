@@ -1,5 +1,10 @@
 const weahterForm = document.querySelector("form");
 const search = document.querySelector("input");
+const messageOne = document.querySelector("#message-1");
+const messageTwo = document.querySelector("#message-2");
+
+messageOne.textContent = "Loading...";
+messageTwo.textContent = "";
 
 weahterForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -11,8 +16,10 @@ weahterForm.addEventListener("submit", (event) => {
     .then((res) => {
       if (res.error) {
         console.log(res.error);
+        messageOne.textContent = res.error;
       } else {
-        console.log(res);
+        messageOne.textContent = res.location;
+        messageTwo.textContent = res.temperature;
       }
     });
 });
